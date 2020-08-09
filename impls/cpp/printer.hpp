@@ -104,8 +104,8 @@ std::string pr_str(const MalType& d) {
   if (d.is<MalType::List>()) {
     return pr_str<ListMeta>(d.list());
   }
-  if (d.is<MalType::Array>()) {
-    return pr_str<ArrayMeta>(d.array());
+  if (d.is_vector()) {
+    return pr_str<ArrayMeta>(d.vector());
   }
   if (d.is<MalType::Map>()) {
     return pr_str(d.map());
@@ -115,6 +115,9 @@ std::string pr_str(const MalType& d) {
   }
   if (d.is<MalType::Nil>()) {
     return "nil";
+  }
+  if (d.is_function()) {
+    return "function";
   }
 
   return "error";

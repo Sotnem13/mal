@@ -125,7 +125,9 @@ struct Reader {
     tokens.read_str(input);
   }
   MalType read_form() {
-    if (tokens.empty()) throw std::runtime_error("read_form: tokens empty");
+    // if (tokens.empty()) throw std::runtime_error("read_form: tokens empty");
+    if (tokens.empty()) return MalType::Nil();
+
     auto t = tokens.front();
 
     if (t == ListMeta::begin) {
